@@ -1,0 +1,6 @@
+
+<svg width="512" height="512" viewBox="0 0 512 512">
+    <rect width="512" height="512" fill="#2563eb"/>
+    <path d="M256 96l96 96-96 96-96-96z" fill="white"/>
+    <text x="256" y="288" font-size="160" text-anchor="middle" fill="white" font-family="Arial">₹</text>
+</svg>

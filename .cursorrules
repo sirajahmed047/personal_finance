@@ -1,0 +1,104 @@
+context:
+Initial Goal:
+- The project began with the objective of creating a single-page web-based finance dashboard to track personal finances for a 28-year-old male living in India, using Indian Rupees (₹). The dashboard was designed to include four main components: Debt Tracker, Expense Tracker, Income Tracker, and Investment Tracker, with a focus on a simple, dynamic UI displaying everything on one page. Data persistence was achieved using browser localStorage.
+Feature Development
+Debt Tracker:
+- Initial Requirements: Track total loans/debts with manual monthly payment inputs, a progress bar showing percentage paid off (starting at 0% or reflecting prior payments), and compound interest calculations based on principal, annual interest rate, and loan duration (in years).
+Refinements:
+- Added support for decimal years (e.g., 1.5 years for 1 year 6 months).
+- Included a start date to calculate payments from a past point, adjusting remaining debt based on elapsed time.
+- Introduced an EMI (Equated Monthly Installment) model where users input a fixed monthly payment (including principal and interest) instead of separate interest calculations.
+- Added an option for partial/extra payments beyond EMI, with a checkbox ("Allow Extra Payments") to enable/disable this feature.
+- Implemented individual progress bars for each debt, showing percentage of total loan amount (EMI * total months) paid off.
+- Added a "Delete" button to remove debts and their payment history.
+- Included a missed payment check, warning users if no payment was made in the last month.
+Expense Tracker:
+- Designed to track daily expenses (date, category, amount) separately from debt payments.
+- Calculates total expenses for the current month, displaying the last 5 entries for reference.
+- No budget feature, focusing solely on monitoring spending against income.
+Income Tracker:
+- Tracks a fixed monthly salary (editable via modal).
+- Allows additional one-time incomes (e.g., bonuses, tax returns) with date, description, and amount, summing them with the salary for the current month’s total income.
+- Displays the last 5 additional income entries.
+Investment Tracker:
+- Tracks investments/assets with name, category (Stocks, Property, Savings, Other), and current value.
+- Supports value updates for appreciation/depreciation tracking.
+- Calculates total investment value for net worth computation.
+Net Worth:
+- Calculated as Total Investments minus Total Current Debt, updating dynamically with changes in debts or investments.
+Historical View:
+- Added a "View Payment History" button opening a modal to display all debt payments (EMI and extra) with date, debt name, and amount.
+UI and Persistence
+- UI: Single-page layout with collapsible sections for Debt, Expenses, Income, and Investments. Modals used for adding debts, updating salary, adding investments, and viewing history to keep the interface uncluttered.
+
+
+Iterative Refinements
+Debt Tracker Evolution:
+- Started with manual payments and interest calculations, shifted to EMI-based tracking for simplicity.
+- Added validation for missed payments and capped extra payments when not allowed.
+- Progress bar scope changed from principal to total loan amount (principal + interest), requiring interest rate re-addition.
+
+Error Handling:
+- Addressed initial issues with modal submission not working due to missing form structure.
+- Fixed TypeError: Cannot read properties of undefined (reading 'toFixed') by validating debt objects and skipping invalid entries in rendering.
+- Resolved TypeError: Cannot read properties of null (reading 'value') by ensuring payment inputs exist before access.
+
+LocalStorage Robustness:
+- Added validation when loading debts from localStorage to filter out corrupted or incomplete entries, preventing crashes on startup.
+Challenges and Resolutions
+Modal Submission Failure: Initially, clicking "Submit" in the debt modal did nothing due to an event listener issue. Fixed by wrapping inputs in a <form> and listening for form submission.
+Invalid Debt Objects: calculateCurrentDebt failed with undefined properties from corrupted localStorage data, causing rendering errors. Resolved by validating debts on load and during rendering.
+DOM Timing Issues: Payment inputs weren’t always found after adding debts, fixed by ensuring renderDebtList completes before subsequent actions.
+Final State
+The dashboard now fully supports:
+Debt tracking with EMI inputs, extra payment options, individual progress bars, deletion, and missed payment warnings.
+Expense tracking for monthly spending.
+Income tracking with fixed salary and additional incomes.
+Investment tracking with categorized assets and net worth calculation.
+A clean UI with modals and persistent data storage.
+
+Future requirements: (Android app)
+1. Create App Icons
+- Create square icons in sizes: 192x192 and 512x512
+- Save them in PNG format
+- Use a consistent design that represents your app
+2. Create Web Manifest
+- Create manifest.json in your root directory
+- Define app name, icons, colors, and display preferences
+- Link it in your HTML head section
+3. Create Service Worker
+- Create service-worker.js in your root directory
+- Define which files to cache
+- Set up offline functionality
+- Register it in your HTML
+4. Add Meta Tags
+- Update your HTML head with proper meta tags
+- Include theme-color
+- Add viewport settings
+- Add apple-specific meta tags for iOS support
+5. Test PWA Requirements
+- Use Chrome DevTools' Lighthouse
+- Check for:
+- HTTPS (required for PWA)
+- Service worker registration
+- Valid manifest
+- Proper icons
+6. Deploy
+- Must be served over HTTPS
+- Can use GitHub Pages or similar for free hosting
+- Ensure all files are properly served
+7. Test Installation
+- Test on Android Chrome
+- Test on iOS Safari
+- Verify offline functionality
+- Check app launch behavior
+
+Instructions:
+- Ensure the app is fully responsive and mobile-friendly (using responsive design and media queries) so that it adapts well on smaller screens.
+- Convert the web app into a Progressive Web App (PWA) by adding a proper manifest file, enhanced meta tags, and a service worker to handle offline caching.
+- Validate the PWA functionality using tools like Chrome Lighthouse to ensure your app meets performance and offline standards.
+- For native Android deployment, explore packaging your PWA as an Android app using tools such as Trusted Web Activity (TWA) or a hybrid solution like Cordova/Capacitor.
+- Consider refactoring your vanilla JavaScript code into a modern framework (such as React, Vue, or Svelte) to improve maintainability and enable better cross-platform code sharing—potentially leveraging frameworks like React Native Web if desired.
+- Ensure that your deployment uses HTTPS so that all PWA features work reliably (use GitHub Pages for free hosting)
+- Always go through the steps of creation and if required walkthrough the code to understand context.
+- whenever you face an issue, always check the code for similar gaps or issues.
