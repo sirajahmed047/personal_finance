@@ -1,0 +1,21 @@
+personal-finance-dashboard/
+├── public/
+│   ├── index.html          # Main HTML file
+│   ├── manifest.json       # PWA manifest
+│   ├── icons/              # App icons (192x192, 512x512)
+│   └── serviceWorker.js    # Service worker for offline caching
+├── src/
+│   ├── components/
+│   │   ├── DebtTracker.js  # Debt Tracker tab
+│   │   ├── ExpenseTracker.js # Daily Expenses tab
+│   │   ├── NetWorth.js     # Net Worth tab
+│   │   ├── Header.js       # Navigation bar
+│   │   └── Footer.js       # Optional footer
+│   ├── utils/
+│   │   ├── storage.js      # Local storage utilities
+│   │   └── debtCalculations.js # EMI and balance calculations
+│   ├── App.js              # Main app with tab switching
+│   ├── index.js            # Entry point with service worker registration
+│   └── styles/
+│       └── main.css        # Responsive CSS
+├── package.json            # Dependencies and scripts
